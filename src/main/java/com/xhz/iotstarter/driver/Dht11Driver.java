@@ -111,11 +111,12 @@ public class Dht11Driver extends BaseDriver {
         /**
          * 考虑到健壮性等因素，需要明确好多条件
          */
-        if (!isExec() || temperatureAndHumidity.length == 0 || temperatureAndHumidity.length == 1 || temperatureAndHumidity[0] == 255 || temperatureAndHumidity[1] == 255) {
+        return temperatureAndHumidity[1];
+        /*if (!isExec() || temperatureAndHumidity.length == 0 || temperatureAndHumidity.length == 1 || temperatureAndHumidity[0] == 255 || temperatureAndHumidity[1] == 255) {
             return 0.0F;
         } else {
-            return temperatureAndHumidity[1];
-        }
+
+        }*/
     }
 
     /**
