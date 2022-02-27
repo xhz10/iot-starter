@@ -33,6 +33,11 @@ public class Dht11Driver extends BaseDriver {
     private synchronized float[] getTemperatureAndHumidity() {
         int pin = getPin();
         log.info("pin is: " + pin);
+        if (!isExec()) {
+            // 设备没准备好呢
+            log.info("数据还没准备好呢");
+            return new float[]{255};
+        }
         int laststate = Gpio.HIGH;
         int j = 0;
         dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;

@@ -1,5 +1,6 @@
 package com.xhz.iotstarter.driver;
 
+import com.pi4j.wiringpi.Gpio;
 import com.xhz.iotstarter.client.GpioClient;
 import com.xhz.iotstarter.config.prop.IotProperties;
 import com.xhz.iotstarter.enums.IotDeviceEnum;
@@ -13,6 +14,28 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class LedDriver extends BaseDriver {
+
+
+    /**
+     * 小灯亮的API
+     * @return
+     */
+    public void turnOn() {
+        int pin = getPin();
+        Gpio.pinMode(pin, Gpio.OUTPUT);
+        Gpio.digitalWrite(pin, Gpio.HIGH);
+    }
+
+
+    /**
+     * 小灯灭的API
+     * @return
+     */
+    public void turnOff() {
+        int pin = getPin();
+        Gpio.pinMode(pin, Gpio.OUTPUT);
+        Gpio.digitalWrite(pin, Gpio.LOW);
+    }
 
     @Override
     public void initDevice() {
