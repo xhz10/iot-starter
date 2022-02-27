@@ -28,7 +28,8 @@ public class Dht11Driver extends BaseDriver {
     /**
      * 测量温湿度程序 必须保证同一时刻只有一个线程在做这件事
      */
-    private synchronized float[] getTemperatureAndHumidity(final int pin) {
+    private synchronized float[] getTemperatureAndHumidity() {
+        int pin = getPin();
         if (!isExec()) {
             // 设备没准备好呢
             return new float[]{255};
@@ -98,11 +99,11 @@ public class Dht11Driver extends BaseDriver {
     /**
      * 只获取温度
      *
-     * @param pin
+     *
      * @return
      */
-    public float getTemperature(int pin) {
-        float[] temperatureAndHumidity = getTemperatureAndHumidity(pin);
+    public float getTemperature() {
+        float[] temperatureAndHumidity = getTemperatureAndHumidity();
         /**
          * 考虑到健壮性等因素，需要明确好多条件
          */
@@ -116,11 +117,11 @@ public class Dht11Driver extends BaseDriver {
     /**
      * 只获取湿度
      *
-     * @param pin
+     *
      * @return
      */
-    public float getHumidity(int pin) {
-        float[] temperatureAndHumidity = getTemperatureAndHumidity(pin);
+    public float getHumidity() {
+        float[] temperatureAndHumidity = getTemperatureAndHumidity();
         if (!isExec() || temperatureAndHumidity.length == 0 || temperatureAndHumidity.length == 1 || temperatureAndHumidity[0] == 255 || temperatureAndHumidity[1] == 255) {
             return 0.0F;
         } else {
@@ -131,11 +132,10 @@ public class Dht11Driver extends BaseDriver {
     /**
      * 同时获取温湿度
      *
-     * @param pin
      * @return
      */
-    public float[] getTemAndHum(int pin) {
-        float[] temperatureAndHumidity = getTemperatureAndHumidity(pin);
+    public float[] getTemAndHum() {
+        float[] temperatureAndHumidity = getTemperatureAndHumidity();
         if (!isExec() || temperatureAndHumidity.length == 0 || temperatureAndHumidity.length == 1 || temperatureAndHumidity[0] == 255 || temperatureAndHumidity[1] == 255) {
             return new float[]{255};
         } else {
