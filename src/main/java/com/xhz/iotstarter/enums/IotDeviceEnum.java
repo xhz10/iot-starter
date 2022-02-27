@@ -8,7 +8,10 @@ public enum IotDeviceEnum {
 
     DHT11("dht11", 0),
     LED_RED_GREEN("ledRedGreen", 1),
-    FLAME("flame",2);
+    FLAME("flame", 2),
+
+
+    EMPTY("base", -1);
 
     private String iotName;
     private int iotId;

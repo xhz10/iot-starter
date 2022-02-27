@@ -19,15 +19,10 @@ import java.util.Map;
  * dht11 的驱动代码
  */
 @Component
-public class Dht11Driver extends AbstractDriver implements InitializingBean {
+public class Dht11Driver extends BaseDriver {
 
     private static final int MAXTIMINGS = 85;
     private final int[] dht11_dat = {0, 0, 0, 0, 0};
-
-
-
-    @Autowired
-    private IotProperties iotProperties;
 
 
     /**
@@ -153,13 +148,9 @@ public class Dht11Driver extends AbstractDriver implements InitializingBean {
         return dht11_dat[4] == (dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3] & 0xFF);
     }
 
-    /**
-     * bean 初始化的时候去拿到dht11 的 pin 口
-     *
-     * @throws Exception
-     */
+
     @Override
-    public void afterPropertiesSet() throws Exception {
-        init(IotDeviceEnum.DHT11, iotProperties);
+    public void initDevice() {
+        init(IotDeviceEnum.DHT11, getIotProperties());
     }
 }

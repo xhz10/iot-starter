@@ -34,21 +34,21 @@ public class IotCondition implements Condition {
         int flag = -1;
         switch (method) {
             case WIRINGPISETUP:
-                flag = 2;
-                break;
-            //flag = Gpio.wiringPiSetup();break;
+                //flag = 2;
+                //break;
+            flag = Gpio.wiringPiSetup();break;
             case BCMSETUP:
-                flag = -1;
-                break;
-            //flag = Gpio.wiringPiSetupGpio();break;
+                //flag = -1;
+                //break;
+            flag = Gpio.wiringPiSetupGpio();break;
             case PHYSETUP:
-                flag = -1;
-                break;
-            //flag = Gpio.wiringPiSetupPhys();break;
+                //flag = -1;
+                //break;
+            flag = Gpio.wiringPiSetupPhys();break;
             case SYSSETUP:
-                flag = -1;
-                break;
-            //flag = Gpio.wiringPiSetupSys();break;
+                //flag = -1;
+                //break;
+            flag = Gpio.wiringPiSetupSys();break;
         }
         if (flag == -1) {
             log.error("初始化method有问题", new GpioBuildException());

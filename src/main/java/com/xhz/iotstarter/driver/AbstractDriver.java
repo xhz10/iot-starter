@@ -3,6 +3,8 @@ package com.xhz.iotstarter.driver;
 import com.xhz.iotstarter.client.GpioClient;
 import com.xhz.iotstarter.config.prop.IotProperties;
 import com.xhz.iotstarter.enums.IotDeviceEnum;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -14,10 +16,12 @@ import java.util.Map;
  * <p>
  * 所有驱动初始化的父类
  */
-public class AbstractDriver {
+@Slf4j
+public abstract class AbstractDriver implements InitializingBean {
+
 
     /**
-     * dht11 的gpio口
+     * gpio口
      */
     private int pin = -1;
 
@@ -83,12 +87,18 @@ public class AbstractDriver {
         setDevice(device);
         Map<IotDeviceEnum, Integer> iotPinMap = iotProperties.getIotPinMap();
         // 如果设备已经注册了并且pin不是-1
-        System.out.println(iotPinMap);
         if (!CollectionUtils.isEmpty(iotPinMap) && iotPinMap.containsKey(getDevice()) && iotPinMap.get(getDevice()) != -1) {
             setPin(iotPinMap.get(getDevice()));
             setExec(true);
         }
-        System.out.println(getDeviceName() + "导出pin口 : " + getPin());
+        log.info(getClass().getSimpleName() + ": " +getDeviceName() + "导出pin口 : " + getPin());
         // GpioUtil.export(getPin(), GpioUtil.DIRECTION_OUT);
     }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        initDevice();
+    }
+
+    public abstract void initDevice();
 }
