@@ -32,6 +32,7 @@ public class Dht11Driver extends BaseDriver {
      */
     private synchronized float[] getTemperatureAndHumidity() {
         int pin = getPin();
+        log.info("pin is: " + pin);
         int laststate = Gpio.HIGH;
         int j = 0;
         dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
@@ -174,35 +175,41 @@ public class Dht11Driver extends BaseDriver {
     /**
      * 只获取温度
      *
-     *
      * @return
      */
-    public float getTemperature() {
-        float[] temperatureAndHumidity = getTemperatureAndHumidity();
-        /**
-         * 考虑到健壮性等因素，需要明确好多条件
-         */
-        return temperatureAndHumidity[1];
-        /*if (!isExec() || temperatureAndHumidity.length == 0 || temperatureAndHumidity.length == 1 || temperatureAndHumidity[0] == 255 || temperatureAndHumidity[1] == 255) {
-            return 0.0F;
-        } else {
+    public float getTemperature() throws Exception {
+        for(int i=0;i<20;i++) {
+            Thread.sleep(2000);
+            float[] temperatureAndHumidity = getTemperatureAndHumidity();
+            /**
+             * 考虑到健壮性等因素，需要明确好多条件
+             */
 
-        }*/
+            if (!isExec() || temperatureAndHumidity.length == 0 || temperatureAndHumidity.length == 1 || temperatureAndHumidity[0] == 255 || temperatureAndHumidity[1] == 255) {
+                continue;
+            } else {
+                return temperatureAndHumidity[1];
+            }
+        }
+        throw new Exception("数据测量失败");
     }
 
     /**
      * 只获取湿度
      *
-     *
      * @return
      */
-    public float getHumidity() {
-        float[] temperatureAndHumidity = getTemperatureAndHumidity();
-        if (!isExec() || temperatureAndHumidity.length == 0 || temperatureAndHumidity.length == 1 || temperatureAndHumidity[0] == 255 || temperatureAndHumidity[1] == 255) {
-            return 0.0F;
-        } else {
-            return temperatureAndHumidity[0];
+    public float getHumidity() throws Exception {
+        for (int i = 0; i < 20; i++) {
+            Thread.sleep(2000);
+            float[] temperatureAndHumidity = getTemperatureAndHumidity();
+            if (!isExec() || temperatureAndHumidity.length == 0 || temperatureAndHumidity.length == 1 || temperatureAndHumidity[0] == 255 || temperatureAndHumidity[1] == 255) {
+                continue;
+            } else {
+                return temperatureAndHumidity[0];
+            }
         }
+        throw new Exception("数据测量失败");
     }
 
     /**
@@ -210,16 +217,18 @@ public class Dht11Driver extends BaseDriver {
      *
      * @return
      */
-    public float[] getTemAndHum() {
-        float[] temperatureAndHumidity = getTemperatureAndHumidity();
-        if (!isExec() || temperatureAndHumidity.length == 0 || temperatureAndHumidity.length == 1 || temperatureAndHumidity[0] == 255 || temperatureAndHumidity[1] == 255) {
-            return new float[]{255};
-        } else {
-            return temperatureAndHumidity;
+    public float[] getTemAndHum() throws Exception {
+        for (int i = 0; i < 20; i++) {
+            Thread.sleep(2000);
+            float[] temperatureAndHumidity = getTemperatureAndHumidity();
+            if (!isExec() || temperatureAndHumidity.length == 0 || temperatureAndHumidity.length == 1 || temperatureAndHumidity[0] == 255 || temperatureAndHumidity[1] == 255) {
+                continue;
+            } else {
+                return temperatureAndHumidity;
+            }
         }
+        throw new Exception("数据测量失败");
     }
-
-
 
 
     @Override
