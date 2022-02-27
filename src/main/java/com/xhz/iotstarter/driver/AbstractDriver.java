@@ -1,5 +1,6 @@
 package com.xhz.iotstarter.driver;
 
+import com.pi4j.wiringpi.GpioUtil;
 import com.xhz.iotstarter.client.GpioClient;
 import com.xhz.iotstarter.config.prop.IotProperties;
 import com.xhz.iotstarter.enums.IotDeviceEnum;
@@ -92,7 +93,7 @@ public abstract class AbstractDriver implements InitializingBean {
             setExec(true);
         }
         log.info(getClass().getSimpleName() + ": " +getDeviceName() + "导出pin口 : " + getPin());
-        // GpioUtil.export(getPin(), GpioUtil.DIRECTION_OUT);
+        GpioUtil.export(getPin(), GpioUtil.DIRECTION_OUT);
     }
 
     @Override
