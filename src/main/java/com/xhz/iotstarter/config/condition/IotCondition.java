@@ -36,6 +36,7 @@ public class IotCondition implements Condition {
             case WIRINGPISETUP:
                 //flag = 2;
                 //break;
+                log.info("WIRINGPISETUP 初始化了");
             flag = Gpio.wiringPiSetup();break;
             case BCMSETUP:
                 //flag = -1;
