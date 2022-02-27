@@ -94,6 +94,7 @@ public class Dht11Driver extends BaseDriver {
             res[1] = c; // 温度
             return res;
         } else {
+            log.info("校验失败");
             return new float[]{255};
         }
 
