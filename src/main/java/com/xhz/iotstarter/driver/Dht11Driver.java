@@ -5,6 +5,7 @@ import com.pi4j.wiringpi.GpioUtil;
 import com.xhz.iotstarter.client.GpioClient;
 import com.xhz.iotstarter.config.prop.IotProperties;
 import com.xhz.iotstarter.enums.IotDeviceEnum;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ import java.util.Map;
  * dht11 的驱动代码
  */
 @Component
+@Slf4j
 public class Dht11Driver extends BaseDriver {
 
     private static final int MAXTIMINGS = 85;
@@ -32,6 +34,7 @@ public class Dht11Driver extends BaseDriver {
         int pin = getPin();
         if (!isExec()) {
             // 设备没准备好呢
+            log.info("数据还没准备好呢");
             return new float[]{255};
         }
         int laststate = Gpio.HIGH;
