@@ -93,7 +93,9 @@ public abstract class AbstractDriver implements InitializingBean {
             setExec(true);
         }
         log.info(getClass().getSimpleName() + ": " +getDeviceName() + "导出pin口 : " + getPin());
-        GpioUtil.export(getPin(), GpioUtil.DIRECTION_OUT);
+        if(isExec()) {
+            GpioUtil.export(getPin(), GpioUtil.DIRECTION_OUT);
+        }
     }
 
     @Override
