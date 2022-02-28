@@ -24,10 +24,7 @@ public class FlameDriver extends BaseDriver {
     public synchronized int getFlameStatus() {
         Gpio.pinMode(getPin(), Gpio.INPUT);
         int pin = getPin();
-        if (pin != -1) {
-            return Gpio.digitalRead(pin);
-        }
-        return 1;
+        return pin != -1 ? Gpio.digitalRead(pin) : -1;
     }
 
 
@@ -46,7 +43,7 @@ public class FlameDriver extends BaseDriver {
          */
         if (TimeUnit.MILLISECONDS.equals(timeUnit)) {
             for (int i = 0; i < times; i++) {
-                if (getFlameStatus() == 0) {
+                if (getFlameStatus() == Gpio.HIGH) {
                     return 0;
                 }
                 Gpio.delay(count);
