@@ -22,6 +22,7 @@ public class FlameDriver extends BaseDriver {
      * @return 1代表有，0代表无
      */
     public synchronized int getFlameStatus() {
+        Gpio.pinMode(getPin(), Gpio.INPUT);
         int pin = getPin();
         if (pin != -1) {
             return Gpio.digitalRead(pin);
@@ -71,6 +72,6 @@ public class FlameDriver extends BaseDriver {
     public void initDevice() {
         init(IotDeviceEnum.FLAME, getIotProperties());
         // 统一是input模式
-        Gpio.pinMode(getPin(), Gpio.INPUT);
+
     }
 }

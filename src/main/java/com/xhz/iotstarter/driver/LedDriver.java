@@ -22,6 +22,7 @@ public class LedDriver extends BaseDriver {
      * @return
      */
     public void turnOn() {
+        Gpio.pinMode(getPin(), Gpio.OUTPUT);
         int pin = getPin();
         Gpio.digitalWrite(pin, Gpio.HIGH);
     }
@@ -32,6 +33,7 @@ public class LedDriver extends BaseDriver {
      * @return
      */
     public void turnOff() {
+        Gpio.pinMode(getPin(), Gpio.OUTPUT);
         int pin = getPin();
         Gpio.digitalWrite(pin, Gpio.LOW);
     }
@@ -42,6 +44,6 @@ public class LedDriver extends BaseDriver {
         /**
          * 统一设置成out
          */
-        Gpio.pinMode(getPin(), Gpio.OUTPUT);
+
     }
 }
