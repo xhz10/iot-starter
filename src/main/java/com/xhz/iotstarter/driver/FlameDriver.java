@@ -65,6 +65,18 @@ public class FlameDriver extends BaseDriver {
         }
     }
 
+    public void comment() {
+        Gpio.pinMode(getPin(), Gpio.INPUT);
+        while(true) {
+            if(Gpio.digitalRead(getPin()) == Gpio.HIGH) {
+                log.info("监测到火焰");
+            } else {
+                log.info("没有监测到火焰");
+            }
+            Gpio.delay(1000);
+        }
+    }
+
     /**
      * 初始化设备
      */
