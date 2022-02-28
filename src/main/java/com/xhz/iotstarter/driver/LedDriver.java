@@ -1,6 +1,7 @@
 package com.xhz.iotstarter.driver;
 
 import com.pi4j.wiringpi.Gpio;
+import com.pi4j.wiringpi.GpioUtil;
 import com.xhz.iotstarter.client.GpioClient;
 import com.xhz.iotstarter.config.prop.IotProperties;
 import com.xhz.iotstarter.enums.IotDeviceEnum;
@@ -22,7 +23,6 @@ public class LedDriver extends BaseDriver {
      */
     public void turnOn() {
         int pin = getPin();
-        Gpio.pinMode(pin, Gpio.OUTPUT);
         Gpio.digitalWrite(pin, Gpio.HIGH);
     }
 
@@ -33,12 +33,15 @@ public class LedDriver extends BaseDriver {
      */
     public void turnOff() {
         int pin = getPin();
-        Gpio.pinMode(pin, Gpio.OUTPUT);
         Gpio.digitalWrite(pin, Gpio.LOW);
     }
 
     @Override
     public void initDevice() {
         init(IotDeviceEnum.LED_RED_GREEN, getIotProperties());
+        /**
+         * 统一设置成out
+         */
+        Gpio.pinMode(getPin(), Gpio.OUTPUT);
     }
 }
