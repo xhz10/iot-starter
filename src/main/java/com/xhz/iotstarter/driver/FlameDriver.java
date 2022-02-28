@@ -68,12 +68,14 @@ public class FlameDriver extends BaseDriver {
     public void comment() {
         Gpio.pinMode(getPin(), Gpio.INPUT);
         while(true) {
-            if(Gpio.digitalRead(getPin()) == Gpio.HIGH) {
+            int c = Gpio.analogRead(getPin());
+            log.info("数字信号为" + c);
+            /*if(c == Gpio.HIGH) {
                 log.info("监测到火焰");
             } else {
                 log.info("没有监测到火焰");
-            }
-            Gpio.delay(1000);
+            }*/
+            Gpio.delay(2000);
         }
     }
 
