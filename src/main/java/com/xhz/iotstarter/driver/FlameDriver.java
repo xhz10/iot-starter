@@ -44,7 +44,10 @@ public class FlameDriver extends BaseDriver {
         if (TimeUnit.MILLISECONDS.equals(timeUnit)) {
             for (int i = 0; i < times; i++) {
                 if (getFlameStatus() == Gpio.HIGH) {
+                    log.info("监测到有火焰");
                     return 0;
+                } else {
+                    log.info("监测到没火焰");
                 }
                 Gpio.delay(count);
             }
