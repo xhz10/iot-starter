@@ -27,7 +27,7 @@ public class FlameDriver extends BaseDriver {
         if (pin != -1) {
             return Gpio.digitalRead(pin);
         }
-        return 0;
+        return 1;
     }
 
 
@@ -46,20 +46,20 @@ public class FlameDriver extends BaseDriver {
          */
         if (TimeUnit.MILLISECONDS.equals(timeUnit)) {
             for (int i = 0; i < times; i++) {
-                if (getFlameStatus() == 1) {
-                    return 1;
+                if (getFlameStatus() == 0) {
+                    return 0;
                 }
                 Gpio.delay(count);
             }
-            return 0;
+            return 1;
         } else if (TimeUnit.MICROSECONDS.equals(timeUnit)) {// 微秒级别的
             for (int i = 0; i < times; i++) {
-                if (getFlameStatus() == 1) {
-                    return 1;
+                if (getFlameStatus() == 0) {
+                    return 0;
                 }
                 Gpio.delayMicroseconds(count);
             }
-            return 0;
+            return 1;
         } else {
             throw new Exception("不支持的时间单位");
         }
