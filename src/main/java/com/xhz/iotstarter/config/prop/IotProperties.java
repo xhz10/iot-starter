@@ -28,4 +28,9 @@ public class IotProperties {
      * Iot设备的gpio口和设备的映射  一般是 dht11 : 1 这种形式的
      */
     private Map<IotDeviceEnum,Integer> iotPinMap;
+
+    /**
+     * pcf8591 的数值，默认是0x48
+     */
+    private int pcf8591;
 }

@@ -30,7 +30,6 @@ public class IotCondition implements Condition {
         if (ObjectUtils.isEmpty(method)) {
             return false;
         }
-        System.out.println(method);
         int flag = -1;
         switch (method) {
             case WIRINGPISETUP:
@@ -55,7 +54,6 @@ public class IotCondition implements Condition {
             log.error("初始化method有问题", new GpioBuildException());
             return false;
         }
-        System.out.println("初始化了" + method);
         return true;
     }
 }
