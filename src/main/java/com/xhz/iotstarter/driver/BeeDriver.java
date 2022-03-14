@@ -58,7 +58,7 @@ public class BeeDriver extends BaseDriver {
         for (int i = 0; i < music.size(); i++) {
             beep(music.get(i).getNote().getNumber(), music.get(i).getOneset());
             Gpio.pwmWrite(1, 0);
-            Gpio.delay(100);
+            //Gpio.delay(100);
         }
         Gpio.pwmWrite(1, 0);
     }
