@@ -11,7 +11,7 @@ public class Note {
 
     private MusicBasicNote note;
 
-    private int oneset;
+    private double oneset;
 
     public Note(MusicBasicNote note, int oneset) {
         this.note = note;
@@ -29,11 +29,11 @@ public class Note {
         this.note = note;
     }
 
-    public int getOneset() {
+    public double getOneset() {
         return oneset;
     }
 
-    public void setOneset(int oneset) {
+    public void setOneset(double oneset) {
         this.oneset = oneset;
     }
 }

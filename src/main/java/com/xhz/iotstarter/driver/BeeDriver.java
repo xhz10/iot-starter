@@ -31,7 +31,7 @@ public class BeeDriver extends BaseDriver {
         status = true;
     }
 
-    private void beep(int freq, int ms) {
+    private void beep(int freq, double ms) {
         if (!status) {
             initBeep();
         }
@@ -44,9 +44,9 @@ public class BeeDriver extends BaseDriver {
         range = 600000 / freq;
         Gpio.pwmSetRange(range);
         //设置占空比为50%。
-        Gpio.pwmWrite(1, range / 2);
+        Gpio.pwmWrite(getPin(), range / 2);
         if (ms > 0) {
-            Gpio.delay(ms);
+            Gpio.delay((long) ms);
         }
     }
 
@@ -57,10 +57,10 @@ public class BeeDriver extends BaseDriver {
         }
         for (int i = 0; i < music.size(); i++) {
             beep(music.get(i).getNote().getNumber(), music.get(i).getOneset());
-            Gpio.pwmWrite(1, 0);
+            Gpio.pwmWrite(getPin(), 0);
             //Gpio.delay(100);
         }
-        Gpio.pwmWrite(1, 0);
+        Gpio.pwmWrite(getPin(), 0);
     }
 
 
