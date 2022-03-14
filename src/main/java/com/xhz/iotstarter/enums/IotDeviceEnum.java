@@ -10,6 +10,7 @@ public enum IotDeviceEnum {
     LED_RED_GREEN("ledRedGreen", 1),
     FLAME("flame", 2),
     PCM8951("pcm8951", 3),
+    BEE("bee", 4),
 
 
     EMPTY("base", -1);
