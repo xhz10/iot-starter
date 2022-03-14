@@ -28,7 +28,8 @@ public class BeeDriver extends BaseDriver {
         Gpio.pwmSetMode(Gpio.PWM_MODE_MS);
 
         // 设置时钟基础频率为19.2M/32=600KHZ
-        Gpio.pwmSetClock(20000);
+        Gpio.pwmSetRange(250);
+        Gpio.pwmSetClock(75);
         status = true;
     }
 
@@ -37,15 +38,7 @@ public class BeeDriver extends BaseDriver {
             initBeep();
         }
         int range;
-        /*if (freq < 2000 || freq > 5000) {
-            log.info("invalid freq");
-            return;
-        }*/
-        //设置range为 600KHZ/freq。也就是由range个1/600KHZ组成了freq频率的周期。
-        range = 600000 / freq;
-        Gpio.pwmSetRange(range);
-        //设置占空比为50%。
-        Gpio.pwmWrite(getPin(), range / 2);
+        Gpio.pwmWrite(getPin(), freq);
         if (ms > 0) {
             Gpio.delay((long) ms);
         }
