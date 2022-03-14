@@ -11,7 +11,7 @@ public class MusicCollection {
 
     private static List<Note> happySpeak= new ArrayList();
 
-    private static int oneSet = 100;
+    private static int oneSet = 500;
 
     static {
         /**
