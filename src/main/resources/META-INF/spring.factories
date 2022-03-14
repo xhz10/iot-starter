@@ -2,5 +2,6 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.xhz.iotstarter.config.IotAutoConfiguration,\
   com.xhz.iotstarter.driver.Dht11Driver,\
   com.xhz.iotstarter.driver.LedDriver,\
+  com.xhz.iotstarter.driver.BeeDriver,\
   com.xhz.iotstarter.i2c.PCF8591,\
   com.xhz.iotstarter.driver.FlameDriver
