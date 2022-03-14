@@ -17,8 +17,24 @@ import java.util.List;
 @Slf4j
 public class BeeDriver extends BaseDriver {
 
+    private boolean status = false;
+
+    private void initBeep() {
+        // 设置针脚为pwm输出模式
+        Gpio.pinMode(getPin(), Gpio.PWM_OUTPUT);
+
+        // 设置为ms模式
+        Gpio.pwmSetMode(Gpio.PWM_MODE_MS);
+
+        // 设置时钟基础频率为19.2M/32=600KHZ
+        Gpio.pwmSetClock(32);
+        status = true;
+    }
 
     private void beep(int freq, int ms) {
+        if (!status) {
+            initBeep();
+        }
         int range;
         if (freq < 2000 || freq > 5000) {
             log.info("invalid freq");
@@ -51,15 +67,6 @@ public class BeeDriver extends BaseDriver {
     @Override
     public void initDevice() {
         init(IotDeviceEnum.BEE, getIotProperties());
-
-        // 设置针脚为pwm输出模式
-        Gpio.pinMode(getPin(), Gpio.PWM_OUTPUT);
-
-        // 设置为ms模式
-        Gpio.pwmSetMode(Gpio.PWM_MODE_MS);
-
-        // 设置时钟基础频率为19.2M/32=600KHZ
-        Gpio.pwmSetClock(32);
     }
 }
 
