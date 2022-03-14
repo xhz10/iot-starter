@@ -13,7 +13,7 @@ public class Note {
 
     private double oneset;
 
-    public Note(MusicBasicNote note, int oneset) {
+    public Note(MusicBasicNote note, double oneset) {
         this.note = note;
         this.oneset = oneset;
     }
