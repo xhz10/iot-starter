@@ -24,6 +24,6 @@ public class BaseDriver extends AbstractDriver {
 
     @Override
     public void initDevice() {
-        log.info("瞅我干啥");
+        log.info("base驱动初始化");
     }
 }
