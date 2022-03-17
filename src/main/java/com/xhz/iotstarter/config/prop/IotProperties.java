@@ -33,4 +33,9 @@ public class IotProperties {
      * pcf8591 的数值，默认是0x48
      */
     private int pcf8591;
+
+    /**
+     * adm模块是否开启
+     */
+    private boolean ad;
 }

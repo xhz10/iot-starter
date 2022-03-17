@@ -60,13 +60,15 @@ public class PCF8591 implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        init();
-        if (pcf8591SetUp(getI2cAddress())) {
-            log.info("pcf 8591 初始化成功");
-            setStatus(true);
-        } else {
-            log.info("pcf 8591 初始化失败");
-            setStatus(false);
+        if (iotProperties.isAd()) {
+            init();
+            if (pcf8591SetUp(getI2cAddress())) {
+                log.info("pcf 8591 初始化成功");
+                setStatus(true);
+            } else {
+                log.info("pcf 8591 初始化失败");
+                setStatus(false);
+            }
         }
     }
 }
