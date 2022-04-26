@@ -11,6 +11,8 @@ public enum IotDeviceEnum {
     FLAME("flame", 2),
     PCM8951("pcm8951", 3),
     BEE("bee", 4),
+    SHOCK("shock", 5),
+    HIGHSOUND("highSound", 6),
 
 
     EMPTY("base", -1);
