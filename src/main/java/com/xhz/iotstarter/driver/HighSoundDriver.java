@@ -1,5 +1,6 @@
 package com.xhz.iotstarter.driver;
 
+import com.pi4j.wiringpi.Gpio;
 import com.xhz.iotstarter.enums.IotDeviceEnum;
 import com.xhz.iotstarter.enums.PCF8951IOEnum;
 import com.xhz.iotstarter.exceptions.DeviceInitException;
@@ -24,8 +25,6 @@ public class HighSoundDriver extends BaseDriver {
     public synchronized int getSoundStatus(PCF8951IOEnum input) throws DeviceInitException {
         return pcf8591.readInput(input);
     }
-
-
 
     @Override
     public void initDevice() {

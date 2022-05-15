@@ -6,6 +6,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,6 +29,11 @@ public class IotProperties {
      * Iot设备的gpio口和设备的映射  一般是 dht11 : 1 这种形式的
      */
     private Map<IotDeviceEnum,Integer> iotPinMap;
+
+    /**
+     * Iot设备的gpio口批量对应关系 例如: dht11: [1,2,3,4,5] 这种形式
+     */
+    private Map<IotDeviceEnum, List<Integer>> sensorPinsMap;
 
     /**
      * pcf8591 的数值，默认是0x48

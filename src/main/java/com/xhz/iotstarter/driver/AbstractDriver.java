@@ -9,6 +9,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +28,8 @@ public abstract class AbstractDriver implements InitializingBean {
      */
     private int pin = -1;
 
+    private List<Integer> pins = new ArrayList<>();
+
     /**
      * 驱动是否初始化完毕的标记位
      */
@@ -39,6 +43,14 @@ public abstract class AbstractDriver implements InitializingBean {
 
     protected void setExec(boolean exec) {
         this.exec = exec;
+    }
+
+    public List<Integer> getPins() {
+        return pins;
+    }
+
+    public void setPins(List<Integer> pins) {
+        this.pins = pins;
     }
 
     protected void setPin(int pin) {
