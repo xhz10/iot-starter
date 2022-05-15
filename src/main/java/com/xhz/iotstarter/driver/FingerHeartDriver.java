@@ -19,17 +19,42 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class FingerHeartDriver extends BaseDriver {
 
+    private double step = 0.75;
 
     // 利用到了pcf8591模块
     @Autowired
     private PCF8591 pcf8591;
 
-/*    public int[] getHeartInfo(PCF8951IOEnum input) throws DeviceInitException {
+
+    public double getHeartInfo(PCF8951IOEnum input, double oldValue) throws DeviceInitException {
         int heartStatus = getHeartStatus(input);
-    }*/
+        return heartStatus;//这个平滑就是取本次和上一次测量数据的加权平均值
+    }
+
+    /**
+     * 获取指定时间内的心跳数据
+     *
+     * @param input
+     * @param count 秒数
+     * @return
+     */
+    public double[] getTimesHeartInfo(PCF8951IOEnum input, int count) throws Exception {
+        if(count == 0) {
+            throw new Exception("秒数时间最少为1秒");
+        }
+        double ans[] = new double[count];
+        double old = 0;
+        for (int i = 0; i < count; i++) {
+            double heartStatus = step * old + (1 - step) * getHeartStatus(input);
+            old = heartStatus;
+            ans[i] = heartStatus;
+        }
+        return ans;
+    }
 
     /**
      * 获取心跳电压
+     *
      * @param input
      * @return
      * @throws DeviceInitException
