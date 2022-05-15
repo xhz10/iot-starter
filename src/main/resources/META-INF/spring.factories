@@ -6,4 +6,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.xhz.iotstarter.i2c.PCF8591,\
   com.xhz.iotstarter.driver.FlameDriver,\
   com.xhz.iotstarter.driver.HighSoundDriver,\
-  com.xhz.iotstarter.driver.FingerHeartDriver
+  com.xhz.iotstarter.driver.FingerHeartDriver,\
+  com.xhz.iotstarter.driver.RGBDriver
