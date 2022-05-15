@@ -1,7 +1,18 @@
 # 介绍一下iot-starter
 
-首先强调一下，这个sdk是有一些问题的，主要问题在于它同一个设备同一个传感器只支持一个，如果希望同一个传感器支持多个的sdk不要看master分支，应该看feature分支，feature分支6月之前我会更新完毕
-
+SDK一开始不支持单个传感器多个GPIO引脚操作，但是已经被更新，现在可以支持单个传感器的多个GPIO操作，只需要加入如下配置文件（RGB灯为例）
+```yaml
+# iot传感器操作
+iot:
+  iot-device-pins-map:
+    RGB_LED:
+      - 1
+      - 4
+      - 5
+  ad: true
+  build-method: wiringpisetup
+```
+**当然我这个行为主要是为了兼容过去的单个GPIO的驱动可用，后续会逐渐更新驱动。**
 ## 1. 如何使用
 
 首先新建一个SpringBoot项目
@@ -16,9 +27,14 @@
 iot:
   ad: true # 是否开启AD转换，如果开启默认是pcf8591的使用
   pcf8591: 0x48 # pcf8591默认是0X48也可以自己定义
-  iotPinMap:
+  iotPinMap: # 如果一个传感器只希望对应一个GPIO可以采用这套方案
     DHT11: 4 
     FLAME: 5
+  iot-device-pins-map: # 如果一个传感器希望对应多个GPIO需要采用这个方案
+    RGB_LED:
+      - 1
+      - 4
+      - 5
   build-method: wiringpisetup
   # gpio的初始化有很多策略，分别是
   # wiringpisetup : 该函数使用WiringPi编号方式对树莓派引脚进行初始化
