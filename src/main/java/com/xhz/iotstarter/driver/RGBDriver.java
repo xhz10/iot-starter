@@ -75,6 +75,18 @@ public class RGBDriver extends BaseDriver {
         Gpio.digitalWrite(pin, Gpio.LOW);
     }
 
+    private synchronized void closeFlash(int pin) {
+        Gpio.digitalWrite(pin, Gpio.LOW);
+    }
+
+
+    public void closeRGBFlush() {
+        closeFlash(R);
+        closeFlash(G);
+        closeFlash(B);
+
+    }
+
     /**
      * 初始化RGB这个东西
      *
