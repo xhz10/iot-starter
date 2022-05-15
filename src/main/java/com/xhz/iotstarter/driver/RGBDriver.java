@@ -95,7 +95,10 @@ public class RGBDriver extends BaseDriver {
     public void initDevice() {
         init(IotDeviceEnum.RGB_LED, getIotProperties());
         List<Integer> pins = getPins();
-        if (pins.size() <= 2) {
+        for(int i=0;i<pins.size();i++) {
+            log.info(String.valueOf(pins.get(i)));
+        }
+        if (pins.size() != 3) {
             // 这个驱动谁也不行用
             setExec(false);
             log.error("这个驱动初始化绝对有问题，最基础的RGB不全");
