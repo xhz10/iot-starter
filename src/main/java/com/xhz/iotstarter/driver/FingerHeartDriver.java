@@ -48,6 +48,7 @@ public class FingerHeartDriver extends BaseDriver {
             double heartInfo = getHeartInfo(input, old);
             old = heartInfo;
             ans[i] = heartInfo;
+            Gpio.delay(1000);
         }
         return ans;
     }
