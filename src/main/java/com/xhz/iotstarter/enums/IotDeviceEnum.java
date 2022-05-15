@@ -13,8 +13,9 @@ public enum IotDeviceEnum {
     BEE("bee", 4),
     SHOCK("shock", 5),
     HIGHSOUND("highSound", 6),
-    FINGER_HEART("fingerHeart",7),
-    TEST("test",9),
+    FINGER_HEART("fingerHeart", 7),
+    RGB_LED("rgbLed", 8),
+    TEST("test", 9),
 
 
     EMPTY("base", -1);

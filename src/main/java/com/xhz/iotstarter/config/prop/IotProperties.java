@@ -33,7 +33,7 @@ public class IotProperties {
     /**
      * Iot设备的gpio口批量对应关系 例如: dht11: [1,2,3,4,5] 这种形式
      */
-    private Map<IotDeviceEnum, List<Integer>> sensorPinsMap;
+    private Map<IotDeviceEnum, List<Integer>> iotDevicePinsMap;
 
     /**
      * pcf8591 的数值，默认是0x48

@@ -5,6 +5,7 @@ import com.xhz.iotstarter.enums.IotDeviceEnum;
 import lombok.Data;
 import org.springframework.context.ApplicationContext;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +26,11 @@ public class GpioClient {
     /**
      * Iot设备的gpio口和设备的映射  一般是 dht11 : 1 这种形式的
      */
-    private Map<IotDeviceEnum,Integer> iotPinMap;
+    private Map<IotDeviceEnum, Integer> iotPinMap;
+
+    /**
+     * Iot设备不一定只有一个GPIO口，而是可能一个传感器需要许多GPIO口
+     */
+    private Map<IotDeviceEnum, List<Integer>> iotDevicePinsMap;
 
 }

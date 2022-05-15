@@ -29,6 +29,7 @@ public class IotAutoConfiguration {
         GpioClient gpioClient = new GpioClient();
         gpioClient.setIotPinMap(iotProperties.getIotPinMap());
         gpioClient.setBuildMethod(iotProperties.getBuildMethod());
+        gpioClient.setIotDevicePinsMap(iotProperties.getIotDevicePinsMap());
         return gpioClient;
     }
 }

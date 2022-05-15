@@ -1,12 +1,7 @@
 package com.xhz.iotstarter.driver;
 
 import com.pi4j.wiringpi.Gpio;
-import com.pi4j.wiringpi.GpioUtil;
-import com.xhz.iotstarter.client.GpioClient;
-import com.xhz.iotstarter.config.prop.IotProperties;
 import com.xhz.iotstarter.enums.IotDeviceEnum;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
