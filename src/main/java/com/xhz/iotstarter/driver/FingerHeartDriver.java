@@ -26,7 +26,7 @@ public class FingerHeartDriver extends BaseDriver {
     private PCF8591 pcf8591;
 
 
-    public double getHeartInfo(PCF8951IOEnum input, double oldValue) throws DeviceInitException {
+    public synchronized double getHeartInfo(PCF8951IOEnum input, double oldValue) throws DeviceInitException {
         int heartStatus = getHeartStatus(input);
         return heartStatus;//这个平滑就是取本次和上一次测量数据的加权平均值
     }
@@ -45,9 +45,9 @@ public class FingerHeartDriver extends BaseDriver {
         double ans[] = new double[count];
         double old = 0;
         for (int i = 0; i < count; i++) {
-            double heartStatus = step * old + (1 - step) * getHeartStatus(input);
-            old = heartStatus;
-            ans[i] = heartStatus;
+            double heartInfo = getHeartInfo(input, old);
+            old = heartInfo;
+            ans[i] = heartInfo;
         }
         return ans;
     }
